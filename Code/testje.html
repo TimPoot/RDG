@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="testje.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      var url = "https://re.reddit.com/r/recipes/.json?jsonp=?"
+      var post1, post2, post3;
+
+      $(document).ready(function(){
+        $("#RDG").click(function(){
+		  do{//niet meer dubbele posts
+            post1 = Math.floor((Math.random() * 10) + 1);
+            post2 = Math.floor((Math.random() * 10) + 1);
+            post3 = Math.floor((Math.random() * 10) + 1);
+		  }while(post1 === post2 || post2 === post3 || post1 === post3)
+		  
+          $.getJSON(url, function(data, status){
+            postnr = Math.floor((Math.random() * 10) + 1);
+            $("#test1").text(data.data.children[post1].data.selftext); 
+			postnr = Math.floor((Math.random()*10) + 1);
+            $("#test2").text(data.data.children[post2].data.selftext);
+			postnr = Math.floor((Math.random()*10) + 1);
+            $("#test3").text(data.data.children[post3].data.selftext);				
+          });
+        });
+      });
+    </script>
+	<script>
+	    jQuery("#test1").jScrollPane();
+	    jQuery("#test2").jScrollPane();
+	    jQuery("#test3").jScrollPane();
+	</script>
+  </head>
+  <body>
+    <div id="page-container">
+		<center><button type="button" id="RDG">Geef random recept!</button></center>
+		<br>
+		<div id="floatleft"><h3 id="test1">WhiteSPACE1</h3></div>
+		<div id="floatleft"><h3 id="test2">WhiteSPACE2</h3></div>
+		<div id="floatleft"><h3 id="test3">WhiteSPACE3</h3></div>
+	</div>
+  </body>
+</html>
