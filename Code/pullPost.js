@@ -6,16 +6,15 @@ function getPost(){
   var i, j;
   
   $.getJSON(url, function(data, status){
-      i = 0;
-	  j = 0;
-      while(i < 10){
-	    if(data.data.children[j].data.link_flair_text == "Recipe"){
-
-		  posts[i] = data.data.children[j].data.selftext;
-		  i++;
-		}
-		j++;
-	  } 			
+    i = 0;
+    j = 0;
+    while(i < 10){
+      if(data.data.children[j].data.link_flair_text == "Recipe"){
+        posts[i] = data.data.children[j].data.selftext;
+        i++;
+      }
+      j++;
+    } 			
   });
 }
 
