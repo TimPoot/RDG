@@ -22,12 +22,16 @@ function getPost(){
 
 function setPosts(){
   var postnr1, postnr2, postnr3;
+  console.log(posts.length);
   do{
-    postnr1 = Math.floor((Math.random() * posts.length) + 1);
-    postnr2 = Math.floor((Math.random() * posts.length) + 1);
-    postnr3 = Math.floor((Math.random() * posts.length) + 1);
-    break;
+    postnr1 = Math.floor((Math.random() * posts.length));
+    postnr2 = Math.floor((Math.random() * posts.length));
+    postnr3 = Math.floor((Math.random() * posts.length));
   }while(postnr1 === postnr2 || postnr2 === postnr3 || postnr1 === postnr3);
+
+  console.log(postnr1);
+  console.log(postnr2);
+  console.log(postnr3);
   
   post1 = posts[postnr1];
   post2 = posts[postnr2];
