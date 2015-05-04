@@ -2,6 +2,15 @@ var url = "https://re.reddit.com/r/recipes/.json?jsonp=?";
 var json;
 var posts = [];
 var post1, post2, post3;
+var GlobalKeyword = "pancakes";
+
+function SearchPost(post, keyword){
+
+  if (post.toLowerCase().indexOf(keyword) > -1)
+	  return true;
+  else
+	  return false;
+}
 
 
 
@@ -45,6 +54,13 @@ function buttonPress(){
   $("#test1").text(post1); 
   $("#test2").text(post2);
   $("#test3").text(post3);	
+  
+  if (SearchPost(post1, GlobalKeyword))
+	  alert('1');
+  if (SearchPost(post2, GlobalKeyword))
+	  alert('2');
+  if (SearchPost(post3, GlobalKeyword))	 
+	  alert('3');
 }
 
 $(document).ready(function(){
