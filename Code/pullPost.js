@@ -49,9 +49,8 @@ function setPosts(){
 }
 
 function getValues(){
-	likes = document.getElementById("likes");
-	dislikes = document.getElementById("dislikes");
-	alert(likes);
+	likes = $("#likes").val();
+	dislikes = $("#dislikes").val();
 }
 
 
@@ -64,13 +63,23 @@ function buttonPress(){
   $("#test2").text(post2);
   $("#test3").text(post3);	
   
-  if (SearchPost(post1, GlobalKeyword))
-	  alert('1');
-  if (SearchPost(post2, GlobalKeyword))
-	  alert('2');
-  if (SearchPost(post3, GlobalKeyword))	 
-	  alert('3');
-}
+  if (SearchPost(post1, likes))
+	  alert('like 1');
+  if (SearchPost(post2, likes))
+	  alert('like 2');
+  if (SearchPost(post3, likes))	 
+	  alert('like 3');
+  if (SearchPost(post1, dislikes))
+	  alert('dislike 1');
+  if (SearchPost(post2, dislikes))
+	  alert('dislike 2');
+  if (SearchPost(post3, dislikes))	 
+	  alert('dislike 3');
+  
+  
+  
+  
+  }
 
 $(document).ready(function(){
   $("#RDG").click(function(){
