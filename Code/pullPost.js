@@ -2,7 +2,8 @@ var url = "https://re.reddit.com/r/recipes/.json?jsonp=?";
 var json;
 var posts = [];
 var post1, post2, post3;
-var GlobalKeyword = "pancakes";
+var likes = "";
+var dislikes = "";
 
 function SearchPost(post, keyword){
 
@@ -47,10 +48,18 @@ function setPosts(){
   post3 = posts[postnr3];
 }
 
+function getValues(){
+	likes = document.getElementById("likes");
+	dislikes = document.getElementById("dislikes");
+	alert(likes);
+}
+
+
+
 function buttonPress(){
   getPost();
   setPosts();
-  
+  getValues();
   $("#test1").text(post1); 
   $("#test2").text(post2);
   $("#test3").text(post3);	
