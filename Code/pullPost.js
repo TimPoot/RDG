@@ -1,5 +1,18 @@
-var url = "https://re.reddit.com/r/recipes/.json?jsonp=?";
-var json;
+var tumblrkey = "UcnXRtSmcjk9zACE4eCnANMuOL0oCnK6dYOYumdwYeO96GINFZ&jsonp=?";
+var tumblrurls = [ "http://api.tumblr.com/v2/blog/peegaw.tumblr.com/posts?api_key=" + tumblrkey, 
+                   "http://api.tumblr.com/v2/blog/talkinsnack.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/godofscrumprecipes.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/animerecipes.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/mysecretrecipebook.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/no-more-ramen.tumblr.com/posts?api_key=" + tumblrkey,
+			     ];
+var redditurls = [ "https://re.reddit.com/r/recipes/.json?jsonp=?",
+                   "https://re.reddit.com/r/recipes/top/.json?jsonp=?",
+                   "http://www.reddit.com/r/eatcheapandhealthy/.json?jsonp=?",
+                   "https://re.reddit.com/r/recipes/top/.json?jsonp=?",			   
+			     ];
+var tumblrjson = [];
+var redditjson = [];
 var posts = [];
 var post1, post2, post3;
 var likes = "";
@@ -13,7 +26,41 @@ function SearchPost(post, keyword){
 	  return false;
 }
 
+function amountRecipes(page){
+  var i = 0;
+  var j;
+  
+  for(j = 0; j < 25; j++){
+    if(redditjson[page].data.children[j].data.link_flair_text === "Recipe"){
+	  i++;
+	}
+  }
+  
+  return i;
+}
 
+function addRedditPost(n){
+  var page;
+  var postnr;
+  var i, j;
+  var recipes = [];	
+  
+  page = Math.floor((Math.random() * 4);
+  
+  i = 0;
+  j = 1;
+  while(i < 10 && j < 25){
+    if(redditjson[page].data.children[j].data.link_flair_text.toUpperCase() === "recipe".toUpperCase()){
+      recipes[i] = redditjson[page].data.children[j].data.selftext;
+      i++;
+    }
+
+    j++;
+  }
+  
+  postnr = Math.floor((Math.random() * recipes.length);
+  posts[n] = recipes[postnr];
+}
 
 function getPost(){
   var i, j;
@@ -53,8 +100,6 @@ function getValues(){
 	dislikes = $("#dislikes").val();
 }
 
-
-
 function buttonPress(){
   getPost();
   setPosts();
@@ -62,31 +107,63 @@ function buttonPress(){
   $("#test1").text(post1); 
   $("#test2").text(post2);
   $("#test3").text(post3);	
-  
-  if (SearchPost(post1, likes))
-	  alert('like 1');
-  if (SearchPost(post2, likes))
-	  alert('like 2');
-  if (SearchPost(post3, likes))	 
-	  alert('like 3');
-  if (SearchPost(post1, dislikes))
-	  alert('dislike 1');
-  if (SearchPost(post2, dislikes))
-	  alert('dislike 2');
-  if (SearchPost(post3, dislikes))	 
-	  alert('dislike 3');
-  
-  
-  
-  
-  }
+}
 
+function loadJson(){
+  $.getJSON(redditurls[0], function(data, status){
+      redditjson[0] = data;
+	  console.log(redditjson[0].data.modhash);
+  });
+  
+  $.getJSON(redditurls[1], function(data, status){
+      redditjson[1] = data;
+	  console.log(redditjson[1].data.modhash);
+  });
+  
+  $.getJSON(redditurls[2], function(data, status){
+      redditjson[2] = data;
+	  console.log(redditjson[2].data.modhash);
+  });
+  
+  $.getJSON(redditurls[3], function(data, status){
+      redditjson[3] = data;
+	  console.log(redditjson[3].data.modhash);
+  });
+  
+  $.getJSON(tumblrurls[0], function(data, status){
+      tumblrjson[0] = data;
+	  console.log(tumblrjson[0].response.blog.title);
+  });
+  
+  $.getJSON(tumblrurls[1], function(data, status){
+      tumblrjson[1] = data;
+	  console.log(tumblrjson[1].response.blog.title);
+  });
+  
+  $.getJSON(tumblrurls[2], function(data, status){
+      tumblrjson[2] = data;
+	  console.log(tumblrjson[2].response.blog.title);
+  });
+  
+  $.getJSON(tumblrurls[3], function(data, status){
+      tumblrjson[3] = data;
+	  console.log(tumblrjson[3].response.blog.title);
+  });
+  
+  $.getJSON(tumblrurls[4], function(data, status){
+      tumblrjson[4] = data;
+	  console.log(tumblrjson[4].response.blog.title);
+  });
+  
+  $.getJSON(tumblrurls[5], function(data, status){
+      tumblrjson[5] = data;
+	  console.log(tumblrjson[5].response.blog.title);
+  });
+}
 $(document).ready(function(){
+  loadJson();
   $("#RDG").click(function(){
-    $.getJSON(url, function(data, status){
-      json = data;
-      buttonPress();  
-    });
+    buttonPress();  
   });
 });
 
