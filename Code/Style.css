@@ -1,6 +1,7 @@
 body
 {
     margin:0px; padding:0px;
+	background-image: url("globalBG.png")
 }
 
 #fl_menu
@@ -63,14 +64,65 @@ body
     width: 27%;
 	padding: 20px;
     margin: 1%;
+	margin-bottom: 20px;
 	height: 600px;
+	border-radius: 25px;
 	overflow-y: auto;
-    background: #9999C2
+    background-image: url("elementBG.png");
+	font-family: Arial;
+	font-size: 12pt;
 }
+
+#info
+{
+	margin-left: 1%;
+	background-image: url("infoBG.png");
+	overflow-y: auto;
+	border-radius: 25px;
+
+}
+
+
+
+#title
+{
+	float: left;
+	padding-left: 20px;
+	font-family: Arial;
+	font-size: 25pt;
+	width: 50%;
+}
+
+
+
+#textbody
+{
+	padding: 20px;
+	float: left;
+	width: 60%;
+}
+
+
+
+#sideimage
+{
+	float: right;
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-right: 50px;
+	
+}
+
+#clear
+{
+	clear: both;
+}
+
+
 
 #page-container
 {
-    float: right;
+    float: center;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: auto;
@@ -79,5 +131,5 @@ body
 	height: 1200px;
 	overflow: auto;
 	display: block;
-	background: #CCFFFF;
+	background-image: url("pageBG.png");
 }

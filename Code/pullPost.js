@@ -63,18 +63,9 @@ function buttonPress(){
   $("#test2").text(post2);
   $("#test3").text(post3);	
   
-  if (SearchPost(post1, likes))
-	  alert('like 1');
-  if (SearchPost(post2, likes))
-	  alert('like 2');
-  if (SearchPost(post3, likes))	 
-	  alert('like 3');
-  if (SearchPost(post1, dislikes))
-	  alert('dislike 1');
-  if (SearchPost(post2, dislikes))
-	  alert('dislike 2');
-  if (SearchPost(post3, dislikes))	 
-	  alert('dislike 3');
+  
+  
+
   
   
   
