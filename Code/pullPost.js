@@ -1,5 +1,17 @@
-var url = "https://re.reddit.com/r/recipes/.json?jsonp=?";
-var json;
+var tumblrkey = "UcnXRtSmcjk9zACE4eCnANMuOL0oCnK6dYOYumdwYeO96GINFZ&jsonp=?";
+var tumblrurls = [ "http://api.tumblr.com/v2/blog/talkinsnack.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/godofscrumprecipes.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/animerecipes.tumblr.com/posts?api_key=" + tumblrkey + "&tag=recipe",
+			       "http://api.tumblr.com/v2/blog/mysecretrecipebook.tumblr.com/posts?api_key=" + tumblrkey,
+			       "http://api.tumblr.com/v2/blog/no-more-ramen.tumblr.com/posts?api_key=" + tumblrkey + "&tag=recipe"
+			     ];
+var redditurls = [ "https://re.reddit.com/r/recipes/.json?jsonp=?",
+                   "https://re.reddit.com/r/recipes/top/.json?jsonp=?",
+                   "http://www.reddit.com/r/eatcheapandhealthy/.json?jsonp=?",
+                   "https://re.reddit.com/r/recipes/top/.json?jsonp=?"			   
+			     ];
+var tumblrjson = [];
+var redditjson = [];
 var posts = [];
 var post1, post2, post3;
 var likes = "";
@@ -13,24 +25,64 @@ function SearchPost(post, keyword){
 	  return false;
 }
 
-
-
-function getPost(){
+function addRedditPost(n){
+  var page;
+  var postnr;
   var i, j;
+  var recipes = [];	
+  
+  page = Math.floor((Math.random() * 4));
   
   i = 0;
   j = 1;
   while(i < 10 && j < 25){
-    if(json.data.children[j].data.link_flair_text === "Recipe"){
-      posts[i] = json.data.children[j].data.selftext;
-      i++;
-    }
+    console.log(page + " " + j);
+    if(redditjson[page].data.children[j].data.link_flair_text != undefined){
+      if(redditjson[page].data.children[j].data.link_flair_text.toUpperCase() === "recipe".toUpperCase()){
+        recipes[i] = redditjson[page].data.children[j].data.selftext_html;
+        i++;
+      }
+	}
 
     j++;
-  }		
+  }
+  
+  postnr = Math.floor(Math.random() * recipes.length);
+  posts[n] = recipes[postnr];
+}
+
+function addTumblrPost(n){
+  var page;
+  var postnr;
+  
+  page = Math.floor(Math.random() * 5);
+  postnr = Math.floor(Math.random() * 15);
+  
+  if(tumblrjson[page].response.blog.posts[postnr].type === "photo"){
+    posts[n] = tumblrjson[page].response.blog.posts[postnr].caption;
+  }else if(tumblrjson[page].response.blog.posts[postnr].type === "link"){
+    posts[n] = tumblrjson[page].response.blog.posts[postnr].description;
+  }else if(tumblrjson[page].response.blog.posts[postnr].type === "text"){
+    posts[n] = tumblrjson[page].response.blog.posts[postnr].body;
+  } 
 }
 
 function setPosts(){
+  var rand;
+  var i;
+
+  for(i = 0; i < 10; i){
+    rand = Math.floor(Math.rand * 10);
+	
+	if(rand <= 5){
+	  addTumblrPost(i);
+	}else{
+	  addRedditPost(i);
+	}
+  }  
+}
+
+function pickPosts(){
   var postnr1, postnr2, postnr3;
   console.log(posts.length);
   do{
@@ -53,31 +105,57 @@ function getValues(){
 	dislikes = $("#dislikes").val();
 }
 
-
-
 function buttonPress(){
-  getPost();
   setPosts();
+  pickPosts();
   getValues();
-  $("#test1").text(post1); 
-  $("#test2").text(post2);
-  $("#test3").text(post3);	
-  
-  
-  
+  $("#test1").html(post1); 
+  $("#test2").html(post2);
+  $("#test3").html(post3);	
+}
 
+function loadJson(){
+  $.getJSON(redditurls[0], function(data, status){
+      redditjson[0] = data;
+  });
   
+  $.getJSON(redditurls[1], function(data, status){
+      redditjson[1] = data;
+  });
   
+  $.getJSON(redditurls[2], function(data, status){
+      redditjson[2] = data;
+  });
   
+  $.getJSON(redditurls[3], function(data, status){
+      redditjson[3] = data;
+  });
   
-  }
+  $.getJSON(tumblrurls[0], function(data, status){
+      tumblrjson[0] = data;
+  });
+  
+  $.getJSON(tumblrurls[1], function(data, status){
+      tumblrjson[1] = data;
+  });
+  
+  $.getJSON(tumblrurls[2], function(data, status){
+      tumblrjson[2] = data;
+  });
+  
+  $.getJSON(tumblrurls[3], function(data, status){
+      tumblrjson[3] = data;
+  });
+  
+  $.getJSON(tumblrurls[4], function(data, status){
+      tumblrjson[4] = data;
+  });
+}
 
 $(document).ready(function(){
+  loadJson();
   $("#RDG").click(function(){
-    $.getJSON(url, function(data, status){
-      json = data;
-      buttonPress();  
-    });
+    buttonPress();  
   });
 });
 
