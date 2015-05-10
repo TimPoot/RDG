@@ -31,15 +31,16 @@ function addRedditPost(n){
   var i, j;
   var recipes = [];	
   
-  page = Math.floor((Math.random() * 4));
-  
+  page = Math.floor(Math.random() * 4);
+  console.log(page);  
+
   i = 0;
   j = 1;
-  while(i < 10 && j < 13){
-    //console.log(j);
+  while(i < 10 && j < redditjson[page].data.children.length){
+    console.log(page + " " + j);
     if(redditjson[page].data.children[j].data.link_flair_text !== null){
       if(redditjson[page].data.children[j].data.link_flair_text.toUpperCase() === "recipe".toUpperCase()){
-        recipes[i] = redditjson[page].data.children[j].data.selftext_html;
+        recipes[i] = redditjson[page].data.children[j].data.selftext;
         i++;
       }
     }
@@ -56,7 +57,7 @@ function addTumblrPost(n){
   var postnr;
   
   page = Math.floor(Math.random() * 5);
-  postnr = Math.floor(Math.random() * 15);
+  postnr = Math.floor(Math.random() * (tumblrjson[page].response.posts.length - 1));
   
   if(tumblrjson[page].response.posts[postnr].type === "photo"){
     posts[n] = tumblrjson[page].response.posts[postnr].caption;
@@ -75,7 +76,6 @@ function setPosts(){
     //addTumblrPost(i);
     rand = Math.floor(Math.random() * 10);
 	
-    console.log(rand);
     if(rand <= 5){
       console.log("tumblr");
       addTumblrPost(i);
