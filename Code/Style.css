@@ -5,6 +5,36 @@ body
 	background-image: url("globalBG.png");
 }
 
+.btnoutline
+{
+		border-color: green;
+		border-weight: 2px;
+		border-style: solid;
+}
+
+
+
+#tumblrbtn
+{
+	cursor: pointer;
+	float: left;
+	margin-left: 40%
+}
+
+
+
+#redditbtn
+{
+	cursor: pointer;
+	float: left;
+	margin-left: 2%;
+
+
+}
+
+
+
+
 #mainmenu
 {
 	margin: 0px;
@@ -15,10 +45,11 @@ body
 	background-image: url("headerBG.png");
 }
 
-.RDGbutton
+.RDGbtn
 {
 	cursor: pointer;
 	display: table;
+	float: left;
 	height: 50px;
 	width: 200px;
 	background-image: url("buttonBG.png");
@@ -27,7 +58,7 @@ body
 
 
 
-#RDGtext
+#RDGtxt
 {
 	display: table-cell;
 	font-family: "Arial Black", Arial, Helvetica, sans-serif; 
@@ -39,6 +70,31 @@ body
 	text-align: center;
 }
 
+.advbtn
+{
+	margin-left: 7%;
+	cursor: pointer;
+	display: table;
+	float: left;
+	height: 50px;
+	width: 200px;
+	background-image: url("buttonBG.png");
+	border-radius: 10px;
+}
+
+
+
+#advtxt
+{
+	display: table-cell;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-weight: bold; 
+	color: #fff; 
+	letter-spacing: 7px; 
+	vertical-align: middle;
+	text-align: center;
+}
 
 
 .DisplayR
