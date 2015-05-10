@@ -164,10 +164,10 @@ function loadJson(){
 }
 
 $(document).ready(function(){
-  $(".DisplayR").hide();
+  $(".group").hide();
   loadJson();
   $("#RDG").click(function(){
-  $(".DisplayR").fadeIn(2500);
+  $(".group").fadeIn(2500);
   buttonPress();  
   });
 });

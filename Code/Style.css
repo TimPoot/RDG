@@ -84,7 +84,7 @@ body
 
 
 
-#advtxt
+.btntxt
 {
 	display: table-cell;
 	font-family: "Arial Black", Arial, Helvetica, sans-serif; 
@@ -96,21 +96,30 @@ body
 	text-align: center;
 }
 
-
-.DisplayR
+.group
 {
     display: inline;
     float: left;
-    width: 27%;
-	padding: 20px;
-    margin: 1%;
+    width: 29%;
+	margin-top: 1%;
+    margin-left: 2%;
 	margin-bottom: 20px;
-	height: 600px;
-	border-radius: 25px;
-	overflow-y: auto;
     background-image: url("elementBG.png");
+	border-radius: 25px;
+	height: 730px;
+	padding: 10px;
+}
+
+
+.DisplayR
+{
+	padding: 20px;
+	background-image: url("infoBG.png");
+	overflow-y: auto;
+	height: 600px;
 	font-family: Arial;
 	font-size: 12pt;
+	border-radius: 5px;
 }
 
 #info
@@ -167,7 +176,7 @@ body
 	margin-top: auto;
 	margin-bottom: auto;
 	width: 90%;
-	height: 1300px;
+	height: 1500px;
 	overflow: auto;
 	display: block;
 	background-image: url("pageBG.png");
