@@ -81,13 +81,21 @@ function setPosts(){
   var i;
 
   for(i = 0; i < 10; i++){
-    //addTumblrPost(i);
     rand = Math.floor(Math.random() * 10);
-	
-    if(rand <= 5){
+
+    if(tswitch == 1 && rswitch == 1){
+      if(rand <= 5){
+        addTumblrPost(i);
+      }else{
+        addRedditPost(i);
+      }
+
+    }else if(tswitch == 1 && rswitch != 1){
       addTumblrPost(i);
-    }else{
+    }else if(tswitch != 1 && rswitch == 1){
       addRedditPost(i);
+    }else{
+      break;
     }
   }  
 }
@@ -156,23 +164,23 @@ function loadJson(){
 
 
 function tumblrvink(){
-	if (tswitch == 0){
-		tswitch = 1;
-		$(".vink1").show();
-	}else{
-		tswitch = 0;
-		$(".vink1").hide();
-	}
+  if (tswitch == 0){
+    tswitch = 1;
+    $(".vink1").show();
+  }else{
+    tswitch = 0;
+    $(".vink1").hide();
+  }
 }
 	
 function redditvink(){
-	if (rswitch == 0){
-		rswitch = 1;
-		$(".vink2").show();
-	}else{
-		rswitch = 0;
-		$(".vink2").hide();
-	}
+  if (rswitch == 0){
+    rswitch = 1;
+    $(".vink2").show();
+  }else{
+    rswitch = 0;
+    $(".vink2").hide();
+  }
 }
 
 
