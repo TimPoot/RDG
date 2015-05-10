@@ -1,7 +1,7 @@
 var tswitch = 1;
 var rswitch = 1;
 
-$("#tumblrbtn").onclick(function(){
+$("#tumblrbtn").click(function(){
 	alert("exists")
 	if (tswitch = 0){
 		twsitch = 1;
@@ -13,7 +13,7 @@ $("#tumblrbtn").onclick(function(){
 	}
 });
 
-$("#redditbtn").onclick(function(){
+$("#redditbtn").click(function(){
 	alert("exists")
 	if (rswitch = 0){
 		rwsitch = 1;

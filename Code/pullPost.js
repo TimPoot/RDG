@@ -13,16 +13,10 @@ var redditurls = [ "https://re.reddit.com/r/recipes/.json?jsonp=?",
 var tumblrjson = [];
 var redditjson = [];
 var posts = [];
-var post1, post2, post3;
+var urls = [];
+var postnr1, postnr2, postnr3;
 var likes = "";
 var dislikes = "";
-
-
-
-
-
-
-
 
 function SearchPost(post, keyword){
 
@@ -36,18 +30,18 @@ function addRedditPost(n){
   var page;
   var postnr;
   var i, j;
-  var recipes = [];	
+  var recipes = [];
+  var redditurls = [];
   
   page = Math.floor(Math.random() * 4);
-  console.log(page);  
 
   i = 0;
   j = 1;
   while(i < 10 && j < redditjson[page].data.children.length){
-    console.log(page + " " + j);
     if(redditjson[page].data.children[j].data.link_flair_text !== null){
       if(redditjson[page].data.children[j].data.link_flair_text.toUpperCase() === "recipe".toUpperCase()){
         recipes[i] = redditjson[page].data.children[j].data.selftext;
+        redditurls[i] = redditjson[page].data.children[j].data.url;
         i++;
       }
     }
@@ -57,6 +51,8 @@ function addRedditPost(n){
   
   postnr = Math.floor(Math.random() * recipes.length);
   posts[n] = recipes[postnr];
+  urls[n] = redditurls[postnr];
+  console.log(urls[n]);
 }
 
 function addTumblrPost(n){
@@ -73,6 +69,9 @@ function addTumblrPost(n){
   }else if(tumblrjson[page].response.posts[postnr].type === "text"){
     posts[n] = tumblrjson[page].response.posts[postnr].body;
   } 
+ 
+  urls[n] = tumblrjson[page].response.posts[postnr].post_url;
+  console.log(urls[n]);
 }
 
 function setPosts(){
@@ -84,31 +83,23 @@ function setPosts(){
     rand = Math.floor(Math.random() * 10);
 	
     if(rand <= 5){
-      console.log("tumblr");
       addTumblrPost(i);
     }else{
-      console.log("reddit");
       addRedditPost(i);
     }
   }  
 }
 
 function pickPosts(){
-  var postnr1, postnr2, postnr3;
-  console.log(posts.length);
   do{
     postnr1 = Math.floor((Math.random() * posts.length));
     postnr2 = Math.floor((Math.random() * posts.length));
     postnr3 = Math.floor((Math.random() * posts.length));
   }while(postnr1 === postnr2 || postnr2 === postnr3 || postnr1 === postnr3);
-
-  console.log(postnr1);
-  console.log(postnr2);
-  console.log(postnr3);
   
-  post1 = posts[postnr1];
-  post2 = posts[postnr2];
-  post3 = posts[postnr3];
+  $("#recipe1").html(posts[postnr1]); 
+  $("#recipe2").html(posts[postnr2]);
+  $("#recipe3").html(posts[postnr3]);
 }
 
 function getValues(){
@@ -119,10 +110,7 @@ function getValues(){
 function buttonPress(){
   setPosts();
   pickPosts();
-  getValues();
-  $("#recipe1").html(post1); 
-  $("#recipe2").html(post2);
-  $("#recipe3").html(post3);	
+  getValues();	
 }
 
 function loadJson(){
@@ -167,8 +155,20 @@ $(document).ready(function(){
   $(".group").hide();
   loadJson();
   $("#RDG").click(function(){
-  $(".group").fadeIn(2500);
-  buttonPress();  
+    $(".group").fadeIn(2500);
+    buttonPress();  
+  });
+
+  $("#exURL1").click(function(){
+    window.location.href = urls[postnr1];
+  });
+
+  $("#exURL2").click(function(){
+    window.location.href = urls[postnr2];
+  });
+
+  $("#exURL3").click(function(){
+    window.location.href = urls[postnr3];
   });
 });
 
