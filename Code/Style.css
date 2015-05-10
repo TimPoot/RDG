@@ -84,6 +84,16 @@ body
 	border-radius: 10px;
 }
 
+.extbtn
+{
+	margin-left: 2%;
+	cursor: pointer;
+	display: table;
+	height: 50px;
+	width: 200px;
+	background-image: url("buttonBG.png");
+	border-radius: 10px;
+}
 
 
 .btntxt
