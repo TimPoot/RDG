@@ -17,6 +17,8 @@ var urls = [];
 var postnr1, postnr2, postnr3;
 var likes = "";
 var dislikes = "";
+var tswitch = 1;
+var rswitch = 1;
 
 function SearchPost(post, keyword){
 
@@ -151,8 +153,39 @@ function loadJson(){
   });
 }
 
+
+
+function tumblrvink(){
+	if (tswitch == 0){
+		tswitch = 1;
+		$(".vink1").show();
+	}else{
+		tswitch = 0;
+		$(".vink1").hide();
+	}
+}
+	
+function redditvink(){
+	if (rswitch == 0){
+		rswitch = 1;
+		$(".vink2").show();
+	}else{
+		rswitch = 0;
+		$(".vink2").hide();
+	}
+}
+
+
+
+
 $(document).ready(function(){
   $(".group").hide();
+  $('.tumblrbtn').click(function(){
+	  tumblrvink();
+  });
+  $('.redditbtn').click(function(){
+	  redditvink();
+  });
   loadJson();
   $("#RDG").click(function(){
     $(".group").fadeIn(2500);

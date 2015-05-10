@@ -1,8 +1,10 @@
 var tswitch = 1;
 var rswitch = 1;
 
+
+
 $("#tumblrbtn").click(function(){
-	alert("exists")
+	alert("exists");
 	if (tswitch = 0){
 		twsitch = 1;
 		$(this).addClass('btnoutline');
@@ -14,7 +16,7 @@ $("#tumblrbtn").click(function(){
 });
 
 $("#redditbtn").click(function(){
-	alert("exists")
+	alert("exists");
 	if (rswitch = 0){
 		rwsitch = 1;
 		$(this).addClass('btnoutline');
