@@ -57,7 +57,7 @@ body
 
 
 
-#floatleft
+.DisplayR
 {
     display: inline;
     float: left;
@@ -113,7 +113,7 @@ body
 	
 }
 
-#clear
+.clear
 {
 	clear: both;
 }

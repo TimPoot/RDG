@@ -17,6 +17,13 @@ var post1, post2, post3;
 var likes = "";
 var dislikes = "";
 
+
+
+
+
+
+
+
 function SearchPost(post, keyword){
 
   if (post.toLowerCase().indexOf(keyword) > -1)
@@ -113,9 +120,9 @@ function buttonPress(){
   setPosts();
   pickPosts();
   getValues();
-  $("#test1").html(post1); 
-  $("#test2").html(post2);
-  $("#test3").html(post3);	
+  $("#recipe1").html(post1); 
+  $("#recipe2").html(post2);
+  $("#recipe3").html(post3);	
 }
 
 function loadJson(){
@@ -157,9 +164,11 @@ function loadJson(){
 }
 
 $(document).ready(function(){
+  $(".DisplayR").hide();
   loadJson();
   $("#RDG").click(function(){
-    buttonPress();  
+  $(".DisplayR").fadeIn(2500);
+  buttonPress();  
   });
 });
 
