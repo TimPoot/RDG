@@ -5,6 +5,10 @@ body
 	background-image: url("globalBG.png");
 }
 
+
+
+
+
 .tumblrbtn
 {
 	position: absolute;
@@ -28,6 +32,18 @@ body
 
 }
 
+#advmenutxt
+{
+	display: table-cell;
+	font-family: "Arial Black", Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-weight: bold; 
+	color: #black; 
+	vertical-align: middle;
+	text-align: center;
+	
+	
+}
 
 #vinkje
 {
@@ -44,6 +60,16 @@ body
     height: 60px;
 	width: 100%;
 	background-image: url("headerBG.png");
+}
+
+#advmenu
+{
+	display: table;
+	width: 100%;
+	background-image: url("elementBG.png");
+	margin-bottom: 10px;
+	height: 60px;
+	border-radius: 20px;
 }
 
 .RDGbtn

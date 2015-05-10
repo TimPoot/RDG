@@ -177,9 +177,12 @@ function redditvink(){
 
 
 
-
 $(document).ready(function(){
   $(".group").hide();
+  $("#advmenu").hide();
+  $(".advbtn").click(function(){
+	   $("#advmenu").toggle(); 
+  });
   $('.tumblrbtn').click(function(){
 	  tumblrvink();
   });
