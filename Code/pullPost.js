@@ -14,18 +14,21 @@ var tumblrjson = [];
 var redditjson = [];
 var posts = [];
 var urls = [];
+var ingredients = [];
 var postnr1, postnr2, postnr3;
 var likes = "";
 var dislikes = "";
 var tswitch = 1;
 var rswitch = 1;
 
-function SearchPost(post, keyword){
-
-  if (post.toLowerCase().indexOf(keyword) > -1)
-	  return true;
-  else
-	  return false;
+function doesContainIngredient(post){
+  var i;
+  for(i = 0; i < ingredients.length; i++){
+    if (post.toUpperCase().indexOf(ingredients[i].toUpperCase) > -1){
+      return true;
+    }
+  }
+  return false;
 }
 
 function addRedditPost(n){
@@ -54,7 +57,6 @@ function addRedditPost(n){
   postnr = Math.floor(Math.random() * recipes.length);
   posts[n] = recipes[postnr];
   urls[n] = redditurls[postnr];
-  console.log(urls[n]);
 }
 
 function addTumblrPost(n){
@@ -73,7 +75,6 @@ function addTumblrPost(n){
   } 
  
   urls[n] = tumblrjson[page].response.posts[postnr].post_url;
-  console.log(urls[n]);
 }
 
 function setPosts(){
@@ -81,22 +82,28 @@ function setPosts(){
   var i;
 
   for(i = 0; i < 10; i++){
-    rand = Math.floor(Math.random() * 10);
+    do{
+      rand = Math.floor(Math.random() * 10);
 
-    if(tswitch == 1 && rswitch == 1){
-      if(rand <= 5){
+      if(tswitch == 1 && rswitch == 1){
+        if(rand <= 5){
+          addTumblrPost(i);
+        }else{
+          do{
+            addRedditPost(i);
+          }while(posts[i] === undefined)
+        }
+
+      }else if(tswitch == 1 && rswitch != 1){
         addTumblrPost(i);
+      }else if(tswitch != 1 && rswitch == 1){
+        do{
+          addRedditPost(i);
+        }while(posts[i] === undefined)
       }else{
-        addRedditPost(i);
+        break;
       }
-
-    }else if(tswitch == 1 && rswitch != 1){
-      addTumblrPost(i);
-    }else if(tswitch != 1 && rswitch == 1){
-      addRedditPost(i);
-    }else{
-      break;
-    }
+    }while(doesContainIngredient(posts[i]));
   }  
 }
 
@@ -112,15 +119,25 @@ function pickPosts(){
   $("#recipe3").html(posts[postnr3]);
 }
 
-function getValues(){
-	likes = $("#likes").val();
-	dislikes = $("#dislikes").val();
+function getIngredients(){
+  var i, j;
+  
+  for(i = 0; i < ingredients.length; i++){
+    ingredients[i] = "qxyzqxyzq";    
+  }
+
+  j = 0;
+  for(i = 0; i < 14; i++){
+    if($("#CB" + i).attr('checked')){;
+      ingredients[j] = $("#CB" + i).val();
+    }
+  }
 }
 
 function buttonPress(){
+  getIngredients();
   setPosts();
   pickPosts();
-  getValues();	
 }
 
 function loadJson(){
@@ -182,8 +199,6 @@ function redditvink(){
     $(".vink2").hide();
   }
 }
-
-
 
 $(document).ready(function(){
   $(".group").hide();
