@@ -38,7 +38,7 @@ body
 	font-family: "Arial Black", Arial, Helvetica, sans-serif; 
 	font-size: 14px; 
 	font-weight: bold; 
-	color: #black; 
+	color: black; 
 	vertical-align: middle;
 	text-align: center;
 	
@@ -48,6 +48,7 @@ body
 #vinkje
 {
 	float: left;
+	vertical-align: middle;
 
 }
 
@@ -66,7 +67,7 @@ body
 {
 	display: table;
 	width: 100%;
-	background-image: url("elementBG.png");
+	background-image: url("infoBG.png");
 	margin-bottom: 10px;
 	height: 60px;
 	border-radius: 20px;
@@ -158,6 +159,7 @@ body
 	font-family: Arial;
 	font-size: 12pt;
 	border-radius: 5px;
+	
 }
 
 #info
